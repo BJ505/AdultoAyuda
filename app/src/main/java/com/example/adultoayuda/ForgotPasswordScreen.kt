@@ -51,7 +51,7 @@ fun ForgotPasswordScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         if (errorMessage.isNotEmpty()) {
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error)
+            Text(text = errorMessage, color = MaterialTheme.colorScheme.error, fontSize = 24.sp)
             Spacer(modifier = Modifier.height(8.dp))
         }
 
@@ -68,7 +68,7 @@ fun ForgotPasswordScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Enviar")
+            Text(text = "Enviar", fontSize = 24.sp)
         }
 
     }

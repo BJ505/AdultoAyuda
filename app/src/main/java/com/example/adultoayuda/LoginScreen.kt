@@ -12,6 +12,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
@@ -68,7 +69,7 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         if (errorMessage.isNotEmpty()) {
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error)
+            Text(text = errorMessage, color = MaterialTheme.colorScheme.error, fontSize = 24.sp)
             Spacer(modifier = Modifier.height(8.dp))
         }
 
@@ -86,7 +87,7 @@ fun LoginScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Sesión")
+            Text("Iniciar Sesión", fontSize = 24.sp)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -94,13 +95,13 @@ fun LoginScreen(navController: NavController) {
         TextButton(
             onClick = { navController.navigate("register") }
         ) {
-            Text("Crear cuenta")
+            Text("Crear cuenta", fontSize = 24.sp)
         }
 
         TextButton(
             onClick = { navController.navigate("forgot_password") }
         ) {
-            Text("Recuperar contraseña")
+            Text("Recuperar contraseña", fontSize = 24.sp)
         }
     }
 }

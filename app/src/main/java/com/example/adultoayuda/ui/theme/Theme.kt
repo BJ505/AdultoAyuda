@@ -1,5 +1,6 @@
 package com.example.adultoayuda.ui.theme
 
+import android.R
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

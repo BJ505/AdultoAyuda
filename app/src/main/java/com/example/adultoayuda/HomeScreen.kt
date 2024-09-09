@@ -25,9 +25,9 @@ fun HomeScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(text = "¡Bienvenido a Adulto Ayuda!", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "¡Bienvenido a Adulto Ayuda!", style = MaterialTheme.typography.headlineMedium, fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Usuarios registrados:", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "Usuarios registrados:", style = MaterialTheme.typography.headlineMedium, fontSize = 24.sp)
         Spacer(modifier = Modifier.height(8.dp))
         LazyColumn {
             items(users.size) { index ->
@@ -46,7 +46,7 @@ fun HomeScreen(navController: NavController) {
                         Text(
                             text = "Usuario ${index + 1}: ${users[index].first}",
                             style = TextStyle(
-                                fontSize = 20.sp,
+                                fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold
                             ),
                             color = Color.Black

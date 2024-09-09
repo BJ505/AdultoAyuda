@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 val users = mutableListOf<Pair<String, String>>()
@@ -67,7 +68,7 @@ fun RegisterScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
         
         if (errorMessage.isNotEmpty()) {
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error)
+            Text(text = errorMessage, color = MaterialTheme.colorScheme.error, fontSize = 24.sp)
             Spacer(modifier = Modifier.height(8.dp))
         }
 
@@ -90,7 +91,7 @@ fun RegisterScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Registrarse")
+            Text(text = "Registrarse", fontSize = 24.sp)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -98,7 +99,7 @@ fun RegisterScreen(navController: NavController) {
         TextButton(
             onClick = { navController.navigate("login") }
         ) {
-            Text("¿Ya tienes cuenta? Inicia sesión aquí")
+            Text("¿Ya tienes cuenta? Inicia sesión aquí", fontSize = 24.sp)
         }
     }
 }
