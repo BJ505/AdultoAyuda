@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767565887977",
+    "project_id": "adultoayuda",
+    "storage_bucket": "adultoayuda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767565887977:android:c19912886878a215afb378",
+        "android_client_info": {
+          "package_name": "com.example.adultoayuda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTqZg_xkX58r9Dquvdz36xk17RjzYs3iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

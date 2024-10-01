@@ -14,6 +14,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.adultoayuda.Repository.FirebaseRepository
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -21,6 +23,10 @@ fun LoginScreen(navController: NavController) {
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
+
+    // Obtén el CoroutineScope para lanzar corutinas
+    val coroutineScope = rememberCoroutineScope()
+    val firebaseRepository = FirebaseRepository() // Instancia del repositorio
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,12 +83,17 @@ fun LoginScreen(navController: NavController) {
 
         Button(
             onClick = {
-                val user = users.find { it.first == email && it.second == password }
-                if (user != null) {
-                    errorMessage = ""
-                    navController.navigate("home")
-                } else {
-                    errorMessage = "Nombre de usuario o contraseña inválidos"
+                coroutineScope.launch {
+                    try {
+                        val isSuccess = firebaseRepository.authenticateUser(email, password)
+                        if (isSuccess) {
+                            navController.navigate("home/$email")
+                        } else {
+                            errorMessage = "Nombre de usuario o contraseña inválidos"
+                        }
+                    } catch (e: Exception) {
+                        errorMessage = "Error de conexión"
+                    }
                 }
             },
             modifier = Modifier.fillMaxWidth()

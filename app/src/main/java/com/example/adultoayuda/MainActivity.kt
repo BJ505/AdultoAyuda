@@ -1,5 +1,6 @@
 package com.example.adultoayuda
 
+import LocationPickerScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,7 +39,25 @@ fun AdultoAyudaApp(navController: NavHostController, modifier: Modifier = Modifi
         composable("login") { LoginScreen(navController) }
         composable("register") { RegisterScreen(navController) }
         composable("forgot_password") { ForgotPasswordScreen(navController) }
-        composable("home") { HomeScreen(navController) }
+        composable("home/{email}") { backStackEntry ->
+            val email = backStackEntry.arguments?.getString("email") ?: ""
+            HomeScreen(navController, email)
+        }
+        // Agrega la ruta para LocationPickerScreen
+        composable("location_picker/{email}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("email") ?: ""
+            LocationPickerScreen(navController, username)
+        }
+
+        composable("edit_user/{username}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            EditUserScreen(navController, username)
+        }
+
+        composable("user_list/{username}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            UserListScreen(username)
+        }
     }
 }
 

@@ -11,6 +11,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.adultoayuda.Model.User
+import com.example.adultoayuda.Repository.FirebaseRepository
+import kotlinx.coroutines.launch
 
 val users = mutableListOf<Pair<String, String>>()
 
@@ -20,6 +23,10 @@ fun RegisterScreen(navController: NavController) {
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+
+    // Obtén el CoroutineScope para lanzar corutinas
+    val coroutineScope = rememberCoroutineScope()
+    val firebaseRepository = FirebaseRepository()
     
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -82,10 +89,24 @@ fun RegisterScreen(navController: NavController) {
                         errorMessage = "Las contraseñas no coinciden"
                     }
                     else -> {
-                        users.add(Pair(email, password))
-                        navController.navigate("login") {
-                            popUpTo("register") { inclusive = true }
+                        // Registra al usuario en Firebase
+                        val user = User(email, password)
+                        coroutineScope.launch {
+                            val isSuccess = firebaseRepository.registerUser(user)
+//                            isLoading = false
+                            if (isSuccess) {
+                                navController.navigate("login") {
+                                    popUpTo("register") { inclusive = true }
+                                }
+                            } else {
+                                errorMessage = "Error al registrar el usuario"
+                            }
                         }
+
+//                        users.add(Pair(email, password))
+//                        navController.navigate("login") {
+//                            popUpTo("register") { inclusive = true }
+//                        }
                     }
                 }
             },
